@@ -1,0 +1,119 @@
+<body>
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+
+
+        <!-- Product Details Area Start -->
+        <div class="single-product-area section-padding-100 clearfix">
+            <div class="container">
+
+{{#each products}}
+                <div class="row">
+                    <div class="col-12 col-lg-7">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                     
+                                                                        
+                                            <img class="d-block  rounded" src="/productImages/{{this.image}}"  alt="First slide">
+                                   
+                                    
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="single_product_desc">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                
+                                <p class="product-price"><strong>{{this.name}}</strong></p>
+                                 
+                                    <h2>₹{{this.price}}</h2>
+                                
+
+                                <!-- Avaiable -->
+                                {{#unless this.stock}}
+                                <p class="navaibility"><i class="fa fa-circle"></i> Out of Stock</p>
+                                {{else}}
+                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                                {{/unless}}
+                            </div>
+
+                            <div class="short_overview my-5">
+                                <p class="avaibility">{{this.description}}</p>
+                            </div>
+
+                            <!-- Add to Cart Form -->
+                            <form class="cart clearfix" method="post">
+                                {{!-- <div class="cart-btn d-flex mb-50">
+                                    <p>Qty</p>
+                                    <div class="quantity">
+                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                    </div>
+                                </div> --}}
+                                
+                                <input type="hidden" value={{this.id}} name="id">
+                                
+                                {{#unless this.stock}}
+                                <button type="submit" name="addtocart"  class="btn amado-btn disabled" id="myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"><h4>Add to cart</h4></button>
+                                 {{else}}
+                                <button type="submit" name="addtocart"  class="btn amado-btn disable" id="myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"><h4>Add to cart</h4></button>
+                                {{/unless}}                                    
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+ {{/each}}
+            </div>
+        </div>
+        <!-- Product Details Area End -->
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <h2>Succesfully Added to Cart</h2>
+      </div>
+      <div class="modal-footer">
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script>
+        
+  $('#myBtn').click(function(){
+    $('#exampleModalToggle2').modal('show')
+    setTimeout(function(){
+      $('#exampleModalToggle2').modal('hide');
+    }, 2000);
+  });
+</script>
+
+</body>

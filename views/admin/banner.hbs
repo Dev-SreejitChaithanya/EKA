@@ -1,0 +1,51 @@
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h2>Banners</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a href="/admin/addBanner" class="btn btn-sm btn-outline-dark ">Add New banner</a>
+          </div>
+
+        </div>
+      </div>
+
+     
+
+      
+      <div class="table-responsive">
+<table class="table table-hover"  id="list_products">
+  <thead>
+    <tr>
+        <th scope="col">IMAGE</th>
+        <th scope="col">HEADING</th>
+        <th scope="col">DESCRIPTION</th>
+        <th scope="col">ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+ {{#each banners}}
+        
+         <tr>     
+                        <td>
+              {{#each this.image}}
+              <img src="/productImages/{{this}}" width="80px" height="80px">
+              {{/each}}
+              </td>
+            <td>{{this.heading}}</td>
+            <td>{{this.description}}</td>
+            <td>
+                     <a href="/admin/editBanner?id={{this._id}}" class="btn btn-light">Edit</a>
+
+            </td>
+         </tr>
+        {{/each}}
+  </tbody>
+</table>
+      </div>
+    </main>
+<script>
+$(document).ready( function () {
+    $('#list_products').DataTable();
+   });
+</script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>

@@ -1,0 +1,156 @@
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h2>Coupons</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button class="btn  btn-sm mb-2  " onclick="addNewCoupon()" <i
+                                class="ci-close-circle me-2"></i><span class="fs-sm">Add New Coupon</span> </button>
+          </div>
+
+        </div>
+      </div>
+
+     
+
+      
+      <div class="table-responsive">
+<table class="table table-hover"  id="list_products">
+  <thead>
+    <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Off%</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+ {{#each coupons}}
+        
+         <tr>
+          
+            <td>{{this.code}}</td>
+            <td>{{this.off}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.status}}</td>
+            <td>
+                    
+                    
+                    {{#if (eqw this.status "active")}}
+                    <a href="/admin/deleteCoupon?id={{this._id}}" class="btn btn-light">Deactivate</a>
+                    {{else}}
+                    <a href="/admin/undeleteProduct?id={{this._id}}" class="btn btn-dark">Add</a>
+                    {{/if}}
+            </td>
+         </tr>
+        {{/each}}
+  </tbody>
+</table>
+      </div>
+    
+            <div class="modal fade" id="addCouponModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add New Coupon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3" method="post">
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <br>
+                                    <label for="inputCity" class="form-label">Code</label>
+                                    <input type="text" class="form-control" id="modalCode" name="code">
+
+                                </div>
+
+                                <div class="col-12">
+                                    <br>
+                                    <label for="inputCity" class="form-label">Off %</label>
+                                    <input type="text" class="form-control" id="modalOff" name="off">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <label for="inputEmail4" class="form-label">Date</label>
+                                    <input type="date"  class="form-control" id="modalDate"
+                                        name="date">
+                                    <br>
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class="row sign-btn2 justify-content-around">
+                        <div class="col-sm-1 m-2">
+
+                            <button type="button" class="btn btn-secondary" onclick="insertCoupon()">Add</button>
+                            <br><br>
+                        </div>
+                        
+                        <div class="col-sm-1 m-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    
+    </div>
+<script>
+
+async function addNewCoupon() {
+    $('#addCouponModal').modal('show')
+    }
+
+    async function insertCoupon() {
+    
+        const code = document.getElementById('modalCode').value
+        const off = document.getElementById('modalOff').value
+        const date = document.getElementById('modalDate').value
+        
+        let addCoupon = await fetch('/admin/addCoupon', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'post',
+            body: JSON.stringify({ code: code, date: date, off: off}),
+        })
+        
+        let response = await addCoupon.json()
+        if (response == 'success') {
+            $('#addCouponModal').modal('hide')
+            Swal.fire({
+                title: 'Success',
+                text: "Coupon Added Successfully !",
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK',
+                timer: 3000
+            }).then((res) => {
+                window.location.reload()
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            })
+        }
+    }
+
+
+$(document).ready( function () {
+    $('#list_products').DataTable();
+   });
+</script>

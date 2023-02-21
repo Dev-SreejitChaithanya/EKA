@@ -1,0 +1,26 @@
+
+		<div class="untree_co-section product-section before-footer-section">
+		    <div class="container">
+		      	<div class="row">
+                    {{#each categorys}}
+		      		<!-- Start Column 1 -->
+					<div class="col-12 col-md-4 col-lg-3 mb-5">
+						<a class="product-item" href="/loadProducts?cname={{this.name}}">
+							<img src="/productImages/{{this.image}}" class="img-fluid product-thumbnail">
+							<h3 class="product-title">{{this.name}}</h3>
+							{{!-- <strong class="product-price">₹50.00</strong> --}}
+						</a>
+					</div> 
+					<!-- End Column 1 -->
+                    {{/each}}
+
+		      	</div>
+		    </div>
+		</div>
+
+
+
+
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>

@@ -1,0 +1,64 @@
+<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand">
+            <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink">
+            <div class=""></div>
+        </div>
+    </div>
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Order Details</h2>
+        <a href="/orders" class="btn btn-dark">Back to Orders</a>
+
+    </div>
+
+
+
+
+    <div class="table-responsive">
+        <table class="table table-hover" id="list_products">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+      
+                    <th scope="col">Price</th>
+                  
+                    <th scope="col">Quantity</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h6>Date:{{Date}}</h6>
+        <h6>Address:<br>{{Add.name}},{{Add.add}},{{Add.city}},{{Add.state}},{{Add.pin}},{{Add.mobile}}</h6>
+
+    </div>
+                {{#each orderD}}
+
+                
+                <tr>
+                    <td>{{this.name}}</td>
+                    
+                    <td>{{this.price}}</td>
+                    
+                    <td>{{this.quantity}}</td>
+
+                </tr>
+
+                
+
+                {{/each}}
+                               
+            </tbody>
+        </table>
+        
+    </div>
+
+    {{!-- modal --}}
+
+
+
+</div>

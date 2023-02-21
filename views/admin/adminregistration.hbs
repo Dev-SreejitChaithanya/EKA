@@ -1,0 +1,37 @@
+<div class="SIGn">
+<main class="form-signin">
+  <form action="" method="post">
+    <img class="mb-4 rounded img-fluid shadow-sm mx-auto d-block" src="/assets/logo.png" alt="EKA logo" width="100" height="100" >
+    {{!-- name --}}
+    <div class="form-floating">
+      <h6 class="st">NAME</h6>
+      <input type="text" class="form-control shadow-sm " name="name" id="floatingInput" placeholder="Name">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    {{!-- email --}}
+    <div class="form-floating">
+      <h6 class="st">EMAIL</h6>
+      <input type="email" class="form-control shadow-sm " name="email" placeholder="Email" id="floatingInput">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    {{!-- password --}}
+        <div class="form-floating">
+      <h6 class="st">PASSWORD</h6>
+      <input type="password" class="form-control shadow-sm " name="password" placeholder="Password" id="floatingInput">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    
+    <button class=" btn btn-sm btn-light shadow-sm st" type="submit">CONTINUE></button>
+
+
+  {{#if message}}
+<p style="color:green">{{message}}</p>
+{{/if}}
+
+  </form>
+
+</main>
+</div>

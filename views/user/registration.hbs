@@ -1,0 +1,56 @@
+<div class="SIGn">
+<main class="form-signin">
+  <form action="" method="post">
+    <img class="mb-4 rounded img-fluid shadow-sm mx-auto d-block" src="/assets/logo.png" alt="EKA logo" width="100" height="100" >
+    {{!-- name --}}
+    <div class="form-floating">
+      <h6 class="st">NAME</h6>
+      <input type="text" class="form-control shadow-sm " pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$" name="name" id="floatingInput" placeholder="Name" required="">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    {{!-- email --}}
+    <div class="form-floating">
+      <h6 class="st">EMAIL</h6>
+      <input type="email" class="form-control shadow-sm " pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" title="Requires a @mail.com format"
+ name="email" placeholder="Email" id="floatingInput" required="">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+        {{!-- mobile --}}
+    <div class="form-floating">
+      <h6 class="st">MOBILE</h6>
+      <input type="tel" class="form-control shadow-sm " pattern="^[+]{1}(?:[0-9\\-\\(\\)\\/"
+                        "\\.]\\s?){6, 15}[0-9]{1}$" title="Should be an Indian mobile number"
+ name="mobile" placeholder="Mobile" id="floatingInput" required="">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    {{!-- password --}}
+        <div class="form-floating">
+      <h6 class="st">PASSWORD</h6>
+      <input type="password" class="form-control shadow-sm " pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="Requires a lower case,upper case,number,character and it should be a minimum of 8 characters"
+ name="password" placeholder="Password" id="floatingInput" required="">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    {{!-- password --}}
+      <div class="form-floating">
+      <h6 class="st">CONFIRM PASSWORD</h6>
+      <input type="password" class="form-control shadow-sm " pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" title="Requires a lower case,upper case,number,character and it should be a minimum of 8 characters"
+ name="cpassword" placeholder="Password" id="floatingInput" required="">
+      {{!-- <label for="floatingInput">Email address</label> --}}
+      <br>
+    </div>
+    
+    <button class=" btn btn-sm btn-light shadow-sm st" type="submit">CONTINUE></button>
+
+
+  {{#if message}}
+<p style="color:green">{{message}}</p>
+{{/if}}
+
+  </form>
+
+</main>
+</div>

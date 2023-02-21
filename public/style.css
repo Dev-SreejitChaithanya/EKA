@@ -1,0 +1,105 @@
+body
+{
+  width:100%;
+  overflow-x: hidden;
+  
+}
+
+.SIGn {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ffff;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+}
+
+
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin .form-floating a
+{
+text-decoration: none;
+color: black;
+}
+
+.form-signin input[type="tel"] {
+  /* margin-bottom: -1px; */
+  border-radius: 2rem;
+  /* height: 3rem; */
+  font-size: 2rem;
+
+}
+
+.form-signin input[type="email"] {
+  /* margin-bottom: -1px; */
+  border-radius: 2rem;
+  /* height: 3rem; */
+  font-size: 2rem;
+
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-radius: 2rem;
+  /* height: 3rem; */
+  font-size: 2rem;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: 10px;
+    border-radius: 2rem;
+    height: 3rem;
+    font-size: 2rem;
+  }
+
+.searchB{
+   
+    border-radius: 2rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+.st
+{
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+}
+
+.btn
+{
+    border-radius: 40px;
+    font-size: large;
+    border-color: black;
+}
+
+.ekanav 
+{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  
+}
+
+li
+{
+  font-family: 'Montserrat', sans-serif;
+  font-size: large;
+  margin-left: 0.5rem;
+  margin-right:2rem;
+
+}
+
+.nav-link
+{
+  color:black
+}
