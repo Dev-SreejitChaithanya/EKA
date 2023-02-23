@@ -13,7 +13,7 @@ Handlebars.registerHelper("moment", function(thing1, thing2) {
     return moment(thing1).format(thing2);
   });
 const Razorpay = require('razorpay');
-var instance = new Razorpay({ key_id: config.keyId, key_secret: config.keySecret })
+var instance = new Razorpay({ key_id: "rzp_test_ASawQP7nVsBtie", key_secret: "deoMVE2Sbd9cmycWprZ6ltac" })
 const mongoose= require("mongoose");
 mongoose.connect('mongodb://127.0.0.1:27017/EKA');//mongoose.connect('mongodb://127.0.0.1:27017/DBname')
 
