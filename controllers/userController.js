@@ -3,9 +3,11 @@ const Product = require("../models/productModel");
 const Order = require("../models/orderModel");
 const Coupon = require("../models/couponsModel");
 const Category = require("../models/categoryModel");
+const Banner=require("../models/bannerModel")
 const bcrypt = require("bcrypt");
-const nodemailer = require("nodemailer");
 const config = require("../config/config");
+const nodemailer = require("nodemailer");
+
 const res = require("express/lib/response");
 const randomstring = require("randomstring");
 const mongoose = require("mongoose");
@@ -47,12 +49,12 @@ const sendResetPasswordMail = async (name, email, token) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: config.emailUser,
-        pass: config.emailPassword,
+        user: "bcb61smpttest@gmail.com",
+        pass: "ogriwvjjzwoyezud",
       },
     });
     const mailOptions = {
-      from: config.emailUser,
+      from: "bcb61smpttest@gmail.com",
       to: email,
       subject: "For reset password ",
       html:
@@ -84,10 +86,9 @@ const verifyLogin = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, userData.password);
       if (passwordMatch && userData.block == false) {
         if (userData.is_verified === 0) {
-          res.render(
-            "login",
+          res.render("login",
             { message: "Please verify your mail and try" },
-            { signin: true }
+            { login: true }
           );
         } else {
           req.session.user_id = userData._id;
@@ -124,12 +125,12 @@ const sendVerifyMail = async (name, email, user_id) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: config.emailUser,
-        pass: config.emailPassword,
+        user: "bcb61smpttest@gmail.com",
+        pass: "ogriwvjjzwoyezud",
       },
     });
     const mailOptions = {
-      from: config.emailUser,
+      from: "bcb61smpttest@gmail.com",
       to: email,
       subject: "Verification Mail",
       html:
@@ -316,10 +317,11 @@ const removeCartItem = async (req, res) => {
 const loadHome = async (req, res) => {
   try {
     const userData = await User.findById({ _id: req.session.user_id });
+    const bannerData=await Banner.find().limit(2);
     const productData = await Product.find().limit(3);
     const allProdData = await Product.find()
     // res.render('home',{user:userData})
-    res.render("home", { users: userData, products: productData, pData: allProdData, login: true });
+    res.render("home", { users: userData, products: productData, pData: allProdData, login: true ,banner:bannerData});
   } catch (error) {
     console.log(error.message);
   }
@@ -549,7 +551,7 @@ const verifyMail = async (req, res) => {
       { $set: { is_verified: 1 } }
     );
     console.log(updateInfo);
-    res.render("email-verified");
+    res.render("email-verified",{login:true});
   } catch (error) {
     console.log(error.message);
   }

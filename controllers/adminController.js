@@ -71,7 +71,7 @@ const verifyAdmin = async (req, res) => {
       } else {
       }
     } else {
-      res.render("adminlogin", { message: "Email/password incorrect" });
+      res.render("adminlogin", { message: "Email/password incorrect" ,login:true});
     }
   } catch (error) {}
 };
@@ -81,17 +81,11 @@ const loadDashboard = async (req, res) => {
     const users = await User.find({}).count();
     const products = await Product.find({}).count();
     const orders = await Order.find({}).count();
+    const totalRev=await Order.find({status:"delivered"})
+    let Rev=0;
+    totalRev.forEach((elem,i)=>{Rev=Rev+elem.paid_amount})
+    Rev=Math.round((Rev + Number.EPSILON) * 100) / 100
     const COD = await Order.find({ payment_method: "1" }).count();
-    const salesData = await Order.aggregate([
-      {
-        $group: {
-          /*_id: { $dateToString: { format: "%m", date: "$date" } },*/
-          _id: { $month: "$date" },
-          totalSales: { $sum: "$paid_amount" },
-        },
-      },
-    ]);
-    console.log(salesData);
     const Online = orders - COD;
     res.render("adminDashboard", {
       admin: true,
@@ -99,6 +93,7 @@ const loadDashboard = async (req, res) => {
       userCount: users,
       prodCount: products,
       ordCount: orders,
+      revenue: Rev
     });
   } catch (error) {
     console.log(error.message);

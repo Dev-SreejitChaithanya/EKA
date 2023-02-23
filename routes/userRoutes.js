@@ -12,7 +12,7 @@ const userController = require("../controllers/userController");
 const auth = require("../middlewares/auth");
 
 user_route.get("/", auth.isLogout, userController.loginLoad);
-user_route.post("/", userController.verifyLogin);
+user_route.post("/",userController.verifyLogin);
 
 user_route.get("/register", auth.isLogout, userController.loadRegister);
 user_route.post("/register", userController.insertUser);
@@ -90,7 +90,7 @@ user_route.post("/api/payment/verify", (req, res) => {
 
   var crypto = require("crypto");
   var expectedSignature = crypto
-    .createHmac("sha256", config.keySecret)
+    .createHmac("sha256", "deoMVE2Sbd9cmycWprZ6ltac")
     .update(body.toString())
     .digest("hex");
   console.log("sig received", req.body.response.razorpay_signature);

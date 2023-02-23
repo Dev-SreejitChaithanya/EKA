@@ -2,6 +2,43 @@
 
 <main>
 
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+
+{{#each banner}}
+
+      <div class="carousel-item {{#if @first}}active{{/if}}"  data-bs-interval="2000">
+        <svg class="bd-placeholder-img" width="10%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="50%" height="100%" fill="#777"/></svg>
+         <img src="/productImages/{{this.image}}" class="cover">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>{{this.heading}}</h1>
+            <p>{{this.description}}</p>
+            <p><a class="btn btn-lg btn-danger outline-dark" href="/shop">View</a></p>
+          </div>
+        </div>
+      </div>
+      
+      {{/each}}
+   
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+     <hr class="featurette-divider">
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -37,7 +74,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
+     <hr class="featurette-divider">
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
@@ -55,12 +92,13 @@
         <p><a class="btn btn-secondary" href="/showProduct?id={{this._id}}">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       {{/each}}
+      <hr class="featurette-divider">
     </div><!-- /.row -->
 
 
     <!-- START THE FEATURETTES -->
 
-    <hr class="featurette-divider">
+    {{!-- <hr class="featurette-divider">
 
     <div class="row featurette">
       <div class="col-md-7">
@@ -99,7 +137,7 @@
       </div>
     </div>
 
-    <hr class="featurette-divider">
+    <hr class="featurette-divider"> --}}
 
     <!-- /END THE FEATURETTES -->
 

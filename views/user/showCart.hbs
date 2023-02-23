@@ -33,15 +33,49 @@
 
                                 <!-- Data -->
                             </div>
+
+                             <div class="col-lg-6 col-md-6 mb-4 mb-lg-0">
+                                    <!-- Quantity -->
+                                    <div class="d-flex mb-4" style="max-width: 300px">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="quantity">Quantity</label>
+                                            <a class="btn" onclick="document.getElementById('{{this._id}}').value-- ;validateData('{{_id}}')">-</a>
+                                            <input class="form-control" type="number" id="{{this._id}}" min="1"
+                                                name="quantity" pattern="{{this._id}}" max="{{this.stock}}" value="1"
+                                               readonly/>
+                                               <div></div>
+                                               <a class="btn" onclick="document.getElementById('{{this._id}}').value++ ;validateData('{{_id}}')">+</a>
+                                            <span id="price_text_{{this._id}}">{{this.price}} </span>
+
+                                        </div>
+                                        <div class="form-outline">
+                                            <!-- Price -->
+
+                                            <div class="fs-lg text-accent pt-2 price">
+                                                <div id="get">
+                                                    <p id="actual_price_{{this._id}}" hidden="">{{this.price}}</p>
+
+                                                </div>
+                                            </div>
+                                            <!-- Price -->
+                                        </div>
+                                    </div>
+                                    <!-- Quantity -->
+
+
+                                </div>
                             <form action="/proceed-checkout" method="post">
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <!-- Quantity -->
                                     <div class="d-flex mb-4" style="max-width: 300px">
                                         <div class="form-outline">
                                             <label class="form-label" for="quantity">Quantity</label>
+                                            <a class="btn" onclick="document.getElementById('{{this._id}}').value-- ;validateData('{{_id}}')">-</a>
                                             <input class="form-control" type="number" id="{{this._id}}" min="1"
                                                 name="quantity" pattern="{{this._id}}" max="{{this.stock}}" value="1"
-                                                onchange="validateData('{{_id}}')" />
+                                               readonly/>
+                                               <div></div>
+                                               <a class="btn" onclick="document.getElementById('{{this._id}}').value++ ;validateData('{{_id}}')">+</a>
                                             <span id="price_text_{{this._id}}">{{this.price}} </span>
 
                                         </div>
@@ -77,6 +111,9 @@
                 </div>
 
             </div>
+
+
+
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-header py-3">
@@ -166,6 +203,9 @@
         const final = document.getElementById("final")
         if (Number(element.value) > Number(element.max))
             element.value = element.max
+        if(Number(element.value) < Number(element.min))
+              element.value=element.min    
+
 
         const rate = priceText.innerHTML
         priceText.innerHTML = Number(price.innerHTML) * Number(element.value)

@@ -38,6 +38,16 @@
     </div>
   </div>
   
+  <div class="col">
+    <div class="card h-100 border-dark">
+
+      <div class="card-body">
+        <h3 class="card-title">Revenue <i class="fa-solid fa-coins"></i></h3>
+        <p class="card-text"><br><h2>{{revenue}}</h2></p>
+      </div>
+
+    </div>
+  </div>
  
 </div>
 {{!-- sales report --}}
@@ -57,7 +67,7 @@
 
       <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1024" height="432" style="display: block; width: 1024px; height: 432px;"></canvas>
       <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart2" width="1024" height="432" style="display: block; width: 1024px; height: 432px;"></canvas>
-      
+{{!--       
       <h2>Section title</h2>
    
       <div class="table-responsive">
@@ -186,7 +196,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> --}}
     </main>
     <script>
  async function chart (){
