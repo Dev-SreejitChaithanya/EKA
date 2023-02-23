@@ -50,7 +50,7 @@ app.engine('hbs',hbs.engine({
 
 //session 
 app.use(session({
-    secret:config.sessionSecret,
+    secret:"se1c2r3etKEY",
     resave:false,
     saveUninitialized:false,
     cookie:{
