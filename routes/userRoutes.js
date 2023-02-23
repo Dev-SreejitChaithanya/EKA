@@ -4,8 +4,8 @@ const user_route = express();
 const Razorpay = require("razorpay");
 const config = require("../config/config");
 var instance = new Razorpay({
-  key_id: config.keyId,
-  key_secret: config.keySecret,
+  key_id: "rzp_test_ASawQP7nVsBtie",
+  key_secret:  "deoMVE2Sbd9cmycWprZ6ltac",
 });
 user_route.set("views", "./views/user");
 const userController = require("../controllers/userController");
