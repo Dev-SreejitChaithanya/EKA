@@ -49,12 +49,12 @@ const sendResetPasswordMail = async (name, email, token) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "bcb61smpttest@gmail.com",
-        pass: "dlpqpoanorpoiedh",
+        user: "ekafurnitures@gmail.com",
+        pass: "wyceyzxiltzcikft",
       },
     });
     const mailOptions = {
-      from: "bcb61smpttest@gmail.com",
+      from: "ekafurnitures@gmail.com",
       to: email,
       subject: "For reset password ",
       html:
@@ -125,12 +125,12 @@ const sendVerifyMail = async (name, email, user_id) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "bcb61smpttest@gmail.com",
-        pass: "dlpqpoanorpoiedh",
+        user: "ekafurnitures@gmail.com",
+        pass: "wyceyzxiltzcikft",
       },
     });
     const mailOptions = {
-      from: "bcb61smpttest@gmail.com",
+      from: "ekafurnitures@gmail.com",
       to: email,
       subject: "Verification Mail",
       html:
