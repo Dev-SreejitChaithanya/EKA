@@ -26,7 +26,7 @@ const bodyParser=require('body-parser')
 const userRoutes=require( './routes/userRoutes');
 const adminRoutes=require( './routes/adminRoutes');
 const session=require("express-session")
-
+const { notFound, errorHandler } = require("./middlewares/errorhandling");
 const nocache = require("nocache");
 
 
@@ -75,6 +75,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use('/admin',adminRoutes);
 app.use('/',userRoutes);
-
+app.use("*", notFound);
+app.use(errorHandler);
 
 app.listen(3000,(req,res)=>{console.log("server started running.....")})

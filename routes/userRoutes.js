@@ -42,7 +42,7 @@ user_route.post("/forget-password", userController.resetPassword);
 user_route.get("/loadProducts", auth.isLogin, userController.loadProductPage);
 user_route.get("/showProduct", auth.isLogin, userController.showProduct);
 
-user_route.get("/errorPage", auth.isLogin, userController.errorPage);
+user_route.get("/404", userController.errorPage);
 user_route.post("/showProduct", auth.isLogin, userController.insertToCart);
 
 user_route.get("/userProfile", auth.isLogin, userController.userProfile);

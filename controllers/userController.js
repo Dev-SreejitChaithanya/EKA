@@ -329,7 +329,7 @@ const loadHome = async (req, res) => {
 
 const errorPage = async (req, res) => {
   try {
-    res.render("errorPage");
+    res.render("errorPage",{login:true});
   } catch (error) {
     console.log(error.message);
   }
