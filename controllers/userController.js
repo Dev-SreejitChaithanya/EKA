@@ -50,7 +50,7 @@ const sendResetPasswordMail = async (name, email, token) => {
       requireTLS: true,
       auth: {
         user: "bcb61smpttest@gmail.com",
-        pass: "ogriwvjjzwoyezud",
+        pass: "dlpqpoanorpoiedh",
       },
     });
     const mailOptions = {
@@ -126,7 +126,7 @@ const sendVerifyMail = async (name, email, user_id) => {
       requireTLS: true,
       auth: {
         user: "bcb61smpttest@gmail.com",
-        pass: "ogriwvjjzwoyezud",
+        pass: "dlpqpoanorpoiedh",
       },
     });
     const mailOptions = {
@@ -564,7 +564,7 @@ const forgotPasswordLoad = async (req, res) => {
     if (tokenData) {
       res.render("forget-password", { user_id: tokenData._id });
     } else {
-      res.render("404", { message: "token is invalid" });
+      res.render("404", { message: "Link already used" });
     }
   } catch (error) {
     console.log(error.message);
@@ -578,7 +578,7 @@ const resetPassword = async (req, res) => {
     const secure_password = await securePassword(password);
     const updatedData = await User.findByIdAndUpdate(
       { _id: user_id },
-      { $set: { password: secure_password, token: "" } }
+      { $set: { password: secure_password, token:'' } }
     );
     res.redirect("/");
   } catch (error) {
