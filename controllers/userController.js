@@ -562,9 +562,9 @@ const forgotPasswordLoad = async (req, res) => {
     const token = req.query.token;
     const tokenData = await User.findOne({ token: token });
     if (tokenData) {
-      res.render("forget-password", { user_id: tokenData._id });
+      res.render("forget-password", { user_id: tokenData._id,login:true });
     } else {
-      res.render("404", { message: "Link already used" });
+      res.render("404", { message: "Link already used",login:true });
     }
   } catch (error) {
     console.log(error.message);
