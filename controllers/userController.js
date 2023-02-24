@@ -60,7 +60,7 @@ const sendResetPasswordMail = async (name, email, token) => {
       html:
         "<p>Hi " +
         name +
-        ' ,please click here: <a href="http://localhost:3000/forget-password?token=' +
+        ' ,please click here: <a href="https://www.ekafurnitures.online/forget-password?token=' +
         token +
         '">Reset </a> your password.</p>',
     };
