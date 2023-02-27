@@ -1,0 +1,82 @@
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+
+
+.containerText {
+  display: block;
+  margin: 0 auto;
+  width: 900px;
+  max-width: 90%;
+}
+.containerText p {
+  text-align: justify;
+}
+.containerText h1 {
+  text-align: center;
+}
+
+/* The disappearing animation of the loader */
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+.hide {
+  animation: hide 1s;
+  animation-iteration-count: 1;
+}
+
+/* The loader container */
+#containerLoader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: black;
+}
+
+/* This last piece of code is purely aesthetic and optional.  */
+::-moz-selection {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+}

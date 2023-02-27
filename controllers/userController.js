@@ -25,7 +25,7 @@ const loginLoad = async (req, res) => {
     if (req.session.user_id) {
       res.redirect("/home");
     } else {
-      res.render("login", { login: true });
+      res.render("login", { login: true,nohead:true });
     }
   } catch (error) {
     console.log(error.message);
@@ -316,12 +316,23 @@ const removeCartItem = async (req, res) => {
 
 const loadHome = async (req, res) => {
   try {
-    const userData = await User.findById({ _id: req.session.user_id });
-    const bannerData=await Banner.find().limit(2);
-    const productData = await Product.find().limit(3);
-    const allProdData = await Product.find()
-    // res.render('home',{user:userData})
-    res.render("home", { users: userData, products: productData, pData: allProdData, login: true ,banner:bannerData});
+    if(req.session.user_id)
+    {
+      const userData = await User.findById({ _id: req.session.user_id });
+      const bannerData=await Banner.find().limit(2);
+      const productData = await Product.find().limit(3);
+      const allProdData = await Product.find()
+      // res.render('home',{user:userData})
+      res.render("home", { users: userData, products: productData, pData: allProdData, login: true ,banner:bannerData});
+    }
+    else{
+      const bannerData=await Banner.find().limit(2);
+      const productData = await Product.find().limit(3);
+      const allProdData = await Product.find()
+      // res.render('home',{user:userData})
+      res.render("home", { products: productData, pData: allProdData, login: true ,banner:bannerData,nolog:true});
+    }
+   
   } catch (error) {
     console.log(error.message);
   }
@@ -337,16 +348,27 @@ const errorPage = async (req, res) => {
 
 const loadShop = async (req, res) => {
   try {
-    const userData = await User.findById({ _id: req.session.user_id });
-    const productData = await Product.find();
-    const categoryData = await Category.find({ deletedOn: null });
+if(req.session.user_id){    const userData = await User.findById({ _id: req.session.user_id });
+const productData = await Product.find();
+const categoryData = await Category.find({ deletedOn: null });
 
-    res.render("shop", {
-      users: userData,
-      products: productData,
-      categorys: categoryData,
-      login: true,
-    });
+res.render("shop", {
+  users: userData,
+  products: productData,
+  categorys: categoryData,
+  login: true,
+});}
+else{
+  const productData = await Product.find();
+const categoryData = await Category.find({ deletedOn: null });
+
+res.render("shop", {
+  products: productData,
+  categorys: categoryData,
+  nolog:true,
+  login: true,
+});
+}
   } catch (error) {
     console.log(error.message);
   }
@@ -355,8 +377,15 @@ const loadShop = async (req, res) => {
 const loadProductPage = async (req, res) => {
   try {
     const productData = await Product.find({ category: req.query.cname });
-
-    res.render("productPage", { products: productData, login: true });
+    console.log(productData,"new")
+    if(productData.length !== 0)
+    {if(req.session.user_id){res.render("productPage", { products: productData, login: true });}
+    else{res.render("productPage", { products: productData, login: true,nolog:true });}}
+    else
+    {
+      res.redirect("errorPage")     
+    }
+    
   } catch (error) {
     console.log(error.message);
   }
@@ -391,7 +420,7 @@ const loadCart = async (req, res) => {
       subtotal = subtotal + item.price;
     });
 
-    res.render("showCart", {
+    res.render("showCart", {//res.render("showCart")
       product: items,
       CartExist: true,
       subtotal: subtotal,
@@ -470,13 +499,19 @@ const deleteAddress = async (req, res) => {
   }
 };
 
-const deleteOrder = async (req, res) => {
+const changeOrder = async (req, res) => {
   try {
-    console.log("entered here");
+    if(req.body.cancel){
     const deleteOrder = await Order.findByIdAndUpdate(
       { _id: req.body.OId },
       { $set: { status: "cancelled" } }
-    );
+    );}
+    else if(req.body.return){
+      const deleteOrder = await Order.findByIdAndUpdate(
+        { _id: req.body.OId },
+        { $set: { status: "returned" } }
+      );
+    }
     //add here wallet code
     // if(deleteOrder.payment_method=="1")
     console.log("entered here");
@@ -488,10 +523,18 @@ const deleteOrder = async (req, res) => {
 
 const showProduct = async (req, res) => {
   try {
+    if(req.session.user_id){const user=await User.find({_id:req.session.user_id});
     const productData = await Product.find({ _id: req.query.id });
-    console.log(productData)
-    if (productData) { res.render("showProduct", { products: productData, login: true }); }
-    else { res.redirect("errorPage") }
+
+    if (productData) { res.render("showProduct", { user:user,products: productData, login: true }); }
+    else { res.redirect("errorPage") }}
+    else{
+      const productData = await Product.find({ _id: req.query.id });
+
+    if (productData) { res.render("showProduct", { products: productData, login: true,nolog:true}); }
+    else { res.redirect("/404") }
+    }
+    
   } catch (error) {
     res.redirect("errorPage")
     console.log(error.message);
@@ -663,6 +706,7 @@ const placeOrder = async (req, res) => {
       total,
     } = req.body;
     console.log("inside placeorder line 595 userController");
+ 
 
     const result = Math.random().toString(36).substring(2, 7);
     const id = Math.floor(100000 + Math.random() * 900000);
@@ -999,7 +1043,7 @@ module.exports = {
   checkOut,
   placeOrder,
   loadOrder,
-  deleteOrder,
+  changeOrder,
   validateCoupon,
   viewOrder,
   showOrder,

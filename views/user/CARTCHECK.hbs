@@ -12,7 +12,7 @@
                         <!-- Single item -->
 
                         {{#each product}}
-                        <div class="row">
+                        <div class="row" id="productRow_{{_id}}">
                             {{!-- PRODUCT_IMAGE --}}
                             <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                 <!-- Image -->
@@ -28,17 +28,16 @@
                                 <p><strong>{{this.name}}<br>{{this.price}}</strong></p>
 
 
-                                <button class="btn  btn-sm mb-2  " onclick="removeCartItem('{{_id}}')" <i
+                                <button class="btn  btn-sm mb-2 " onclick="removeCartItem('{{_id}}')" <i
                                     class="ci-close-circle me-2"></i><span class="fs-sm">Remove</span> </button>
 
                                 <!-- Data -->
                             </div>
                             {{!-- QUANTITY --}}
                         
-
-<form action="/proceed-checkout" method="post">
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <!-- Quantity -->
+                                    <form action="/proceed-checkout" method="post">
                                     <div class="d-flex" style="max-width: 300px">
                                         <div class="form-outline">
                                             <label class="form-label" for="quantity">Quantity</label>
@@ -67,6 +66,8 @@
 
 
                                 </div>
+                                
+
 
                         </div>
                         <br>
@@ -80,6 +81,7 @@
             </div>
             {{!-- SUMMARY SIDE --}}
             <div class="col-md-4">
+                <form action="/proceed-checkout" method="post">
                 <div class="card mb-4">
                     <div class="card-header py-3">
                         <h5 class="mb-0">Summary</h5>
@@ -110,7 +112,7 @@
                         {{else}}
                         {{!-- <button type="submit" class="btn btn-dark btn-shadow d-block w-100 mt-4">Proceed to
                             Checkout</button> --}}
-                        <button type="submit" class="btn btn-dark btn-lg btn-block ">
+                        <button type="submit" class="btn btn-dark btn-lg btn-block " >
                             Go to checkout
                         </button>
 </form>
@@ -128,18 +130,20 @@
 <script>
 
     async function removeCartItem(itemid) {
-
         let response = await fetch('/removeCartItem/' + itemid, {
-            method: 'DELETE', headers: {
+            method: 'DELETE', headers: {removeCartItem
                 'Content-Type': 'application/json',
             },
         });
         let res = await response.json();
         if (res == "success") {
             {
+                const productRow = document.getElementById('productRow_'+itemid)
+                productRow.remove();
                 
+                /*
 
-                Swal.fire({
+                {{!-- Swal.fire({
                     title: 'Success',
                     text: "Item deleted successfully !",
                     icon: 'success',
@@ -147,10 +151,11 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'OK',
                     timer: 3000
-                }).then((res) => {
-                    window.location.reload()
                 })
-                
+                .then((res) => {
+                   const productRow = document.getElementById('productRow_'+itemid)
+                    productRow.remove();
+                }) --}})*/
             }
         } else
              { console.log(error.message) }

@@ -82,6 +82,15 @@ color: black;
     border-color: black;
 }
 
+.btn.smallbtn
+{
+  border-radius: 10px;
+  font-size: large;
+  border-color: black;
+  padding: 10px 10px;
+
+}
+
 .ekanav 
 {
   display: flex;

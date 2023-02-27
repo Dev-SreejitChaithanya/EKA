@@ -18,7 +18,8 @@
                 <tr>
                     <th scope="col">OrderId</th>
                 
-                    <th scope="col">Price</th>
+                    <th scope="col">Order Total</th>
+                    <th scope="col">Payment Mode</th>
               
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
@@ -27,13 +28,19 @@
             <tbody>
                 {{#each orders}}
 
-                {{#each product}}
+                
                 <tr>
-                    <td>{{../orderId}}</td>
+                    
+                    <td><a href="">{{this.orderId}}</a></td>
                
-                    <td>{{this.price}}</td>
+                    <td>{{this.paid_amount}}</td>
+                    {{#if (eqw this.payment_method "1" )}}
+                    <td>COD</td>
+                    {{else}}
+                    <td>ONLINE</td>
+                    {{/if}}
                   
-                    <td>{{../status}}</td>
+                    <td>{{this.status}}</td>
                     <td>
                        
                         <button class="btn" onclick="ChangeOrderStatusModall('{{this._id}}','{{../_id}}')"><span
@@ -44,7 +51,7 @@
 
                 </tr>
 
-                {{/each}}
+                
 
                 {{/each}}
 

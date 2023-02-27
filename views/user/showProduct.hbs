@@ -19,7 +19,7 @@
                                     <div class="carousel-item active">
                                      
                                                                         
-                                            <img class="d-block  rounded" src="/productImages/{{this.image}}"  alt="First slide">
+                                            <img class="d-block  rounded"  src="/productImages/{{this.image}}"  alt="First slide">
                                    
                                     
                                     </div>
@@ -66,7 +66,11 @@
                                 {{#unless this.stock}}
                                 <button type="submit" name="addtocart"  class="btn amado-btn disabled" id="myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"><h4>Add to cart</h4></button>
                                  {{else}}
+                                 {{#if  ../user}}
                                 <button type="submit" name="addtocart"  class="btn amado-btn disable" id="myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"><h4>Add to cart</h4></button>
+                                {{else}}
+                                <button type="submit"   class="btn amado-btn disable" ><h4>Add to cart</h4></button>
+                                {{/if}}
                                 {{/unless}}                                    
                             </form>
 
@@ -115,5 +119,6 @@
     }, 2000);
   });
 </script>
+
 
 </body>

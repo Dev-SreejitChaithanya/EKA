@@ -11,14 +11,16 @@ user_route.set("views", "./views/user");
 const userController = require("../controllers/userController");
 const auth = require("../middlewares/auth");
 
-user_route.get("/", auth.isLogout, userController.loginLoad);
-user_route.post("/",userController.verifyLogin);
+user_route.get("/login", auth.isLogout, userController.loginLoad);
+user_route.post("/login",userController.verifyLogin);
+user_route.get("/",userController.loadHome);
+
 
 user_route.get("/register", auth.isLogout, userController.loadRegister);
 user_route.post("/register", userController.insertUser);
 
 user_route.get("/home", auth.isLogin, userController.loadHome);
-user_route.get("/shop", auth.isLogin, userController.loadShop);
+user_route.get("/shop", userController.loadShop);
 user_route.get("/logout", auth.isLogin, userController.logout);
 user_route.get("/cart", auth.isLogin, userController.loadCart);
 user_route.delete(
@@ -39,8 +41,8 @@ user_route.get(
 );
 user_route.post("/forget-password", userController.resetPassword);
 
-user_route.get("/loadProducts", auth.isLogin, userController.loadProductPage);
-user_route.get("/showProduct", auth.isLogin, userController.showProduct);
+user_route.get("/loadProducts", userController.loadProductPage);
+user_route.get("/showProduct",  userController.showProduct);
 
 user_route.get("/404", userController.errorPage);
 user_route.post("/showProduct", auth.isLogin, userController.insertToCart);
@@ -61,7 +63,7 @@ user_route.post("/validateCoupon", auth.isLogin, userController.validateCoupon);
 
 user_route.post("/proceed-checkout", auth.isLogin, userController.checkOut);
 user_route.post("/placeOrder", auth.isLogin, userController.placeOrder); 
-user_route.post("/cancelOrder", auth.isLogin, userController.deleteOrder);
+user_route.post("/changeOrder", auth.isLogin, userController.changeOrder);
 user_route.post("/viewOrder", auth.isLogin, userController.viewOrder);
 user_route.get("/showOrder", auth.isLogin, userController.showOrder);
 
