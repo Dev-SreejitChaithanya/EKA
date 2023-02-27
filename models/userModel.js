@@ -46,6 +46,11 @@ const userSchema=new mongoose.Schema({
         state:{type:String},
         pin:{type:Number}
     }],
+    wallet:{ 
+        type:Number,
+        default:0
+
+    }
     
   
 },

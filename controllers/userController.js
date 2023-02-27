@@ -19,7 +19,7 @@ const PDFDocument = require('pdfkit');
 
 
 const { ObjectId } = require("mongodb");
-let orderDa, dateO, Addr;
+let orderDa, dateO, Addr,orderDetails;
 const loginLoad = async (req, res) => {
   try {
     if (req.session.user_id) {
@@ -501,6 +501,7 @@ const deleteAddress = async (req, res) => {
 
 const changeOrder = async (req, res) => {
   try {
+    const Orderdetails = await Order.findById({ _id: req.body.OId })
     if(req.body.cancel){
     const deleteOrder = await Order.findByIdAndUpdate(
       { _id: req.body.OId },
@@ -511,7 +512,9 @@ const changeOrder = async (req, res) => {
         { _id: req.body.OId },
         { $set: { status: "returned" } }
       );
+      
     }
+    if(Orderdetails.payment_method==2 || req.body.return){ const userData=await User.findByIdAndUpdate({_id:req.session.user_id},{$inc:{wallet:Orderdetails.paid_amount}})}
     //add here wallet code
     // if(deleteOrder.payment_method=="1")
     console.log("entered here");
@@ -982,6 +985,7 @@ const validateCoupon = async (req, res) => {
 const viewOrder = async (req, res) => {
   try {
     const viewOrder = await Order.findById({ _id: req.body.OId });
+    orderDetails=viewOrder;
     const user = await User.findById({ _id: req.session.user_id });
     console.log("Address");
     console.log(req.body.OId);
@@ -1010,12 +1014,22 @@ const showOrder = async (req, res) => {
       orderD: orderDa,
       Date: dateO,
       Add: Addr,
+      Detail:orderDetails,
       userSidebar: true,
     });
   } catch (error) {
     console.log(error);
   }
 };
+const loadWallet=async(req,res)=>
+{
+try{
+  const userData=await User.findById({_id:req.session.user_id})
+  const walletBalance = userData.wallet
+  res.render("wallet",{wallet: walletBalance,user: userData, userSidebar: true})
+}
+catch(error)
+{console.log(error)}};
 module.exports = {
   loginLoad,
   verifyLogin,
@@ -1047,7 +1061,8 @@ module.exports = {
   validateCoupon,
   viewOrder,
   showOrder,
-  errorPage
+  errorPage,
+  loadWallet
   //createInvoices
   //downloadOrder
 };

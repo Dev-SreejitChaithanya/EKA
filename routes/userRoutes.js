@@ -15,6 +15,7 @@ user_route.get("/login", auth.isLogout, userController.loginLoad);
 user_route.post("/login",userController.verifyLogin);
 user_route.get("/",userController.loadHome);
 
+user_route.get('/wallet',auth.isLogin,userController.loadWallet)
 
 user_route.get("/register", auth.isLogout, userController.loadRegister);
 user_route.post("/register", userController.insertUser);
