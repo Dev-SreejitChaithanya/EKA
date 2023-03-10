@@ -1028,8 +1028,20 @@ try{
   const walletBalance = userData.wallet
   res.render("wallet",{wallet: walletBalance,user: userData, userSidebar: true})
 }
+
 catch(error)
 {console.log(error)}};
+
+const contactuspage=async(req,res)=>
+{
+  try{
+    res.render("contactUs" ,{login:true})
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
 module.exports = {
   loginLoad,
   verifyLogin,
@@ -1062,7 +1074,8 @@ module.exports = {
   viewOrder,
   showOrder,
   errorPage,
-  loadWallet
+  loadWallet,
+  contactuspage
   //createInvoices
   //downloadOrder
 };
