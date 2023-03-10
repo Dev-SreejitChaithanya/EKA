@@ -67,7 +67,7 @@ user_route.post("/placeOrder", auth.isLogin, userController.placeOrder);
 user_route.post("/changeOrder", auth.isLogin, userController.changeOrder);
 user_route.post("/viewOrder", auth.isLogin, userController.viewOrder);
 user_route.get("/showOrder", auth.isLogin, userController.showOrder);
-user_route.get("/contact",userController.contactuspage);
+user_route.get("/contactUs",userController.contactuspage);
 
 
 
